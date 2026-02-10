@@ -1,0 +1,224 @@
+{
+  "name": "Automation 1",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "# Automation 1\nform automation to understand the working of nodes and inside the setting or configuration ",
+        "height": 128,
+        "width": 288
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        112,
+        -512
+      ],
+      "typeVersion": 1,
+      "id": "a3954cbb-28d5-40dc-bfb7-5c40d58c66ab",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -256
+      ],
+      "id": "c2efd9a9-3059-4a4f-8652-4953a436613e",
+      "name": "manual trigger"
+    },
+    {
+      "parameters": {
+        "formTitle": "Ai from consultation",
+        "formDescription": "hey i hope so ur fine and if ypou want any kind of consultation jusr asked us ans i will assueyou to solve your problems as soon as possiblre",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Mian Muneeb",
+              "placeholder": "Your Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Service",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Consultation"
+                  },
+                  {
+                    "option": "Training"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "buttonLabel": "Let Aify your word",
+          "customCss": ":root {\n\t--font-family: 'Open Sans', sans-serif;\n\t--font-weight-normal: 400;\n\t--font-weight-bold: 600;\n\t--font-size-body: 12px;\n\t--font-size-label: 14px;\n\t--font-size-test-notice: 12px;\n\t--font-size-input: 14px;\n\t--font-size-header: 20px;\n\t--font-size-paragraph: 14px;\n\t--font-size-link: 12px;\n\t--font-size-error: 12px;\n\t--font-size-html-h1: 28px;\n\t--font-size-html-h2: 20px;\n\t--font-size-html-h3: 16px;\n\t--font-size-html-h4: 14px;\n\t--font-size-html-h5: 12px;\n\t--font-size-html-h6: 10px;\n\t--font-size-subheader: 14px;\n\n\t/* Colors */\n\t--color-background: #fbfcfe;\n\t--color-test-notice-text: #e6a23d;\n\t--color-test-notice-bg: #fefaf6;\n\t--color-test-notice-border: #f6dcb7;\n\t--color-card-bg: #ffffff;\n\t--color-card-border: #dbdfe7;\n\t--color-card-shadow: rgba(99, 77, 255, 0.06);\n\t--color-link: #7e8186;\n\t--color-header: #525356;\n\t--color-label: #555555;\n\t--color-input-border: #dbdfe7;\n\t--color-input-text: #71747A;\n\t--color-focus-border: rgb(90, 76, 194);\n\t--color-submit-btn-bg: #ff6d5a;\n\t--color-submit-btn-text: #ffffff;\n\t--color-error: #ea1f30;\n\t--color-required: #ff6d5a;\n\t--color-clear-button-bg: #7e8186;\n\t--color-html-text: #555;\n\t--color-html-link: #ff6d5a;\n\t--color-header-subtext: #7e8186;\n\n\t/* Border Radii */\n\t--border-radius-card: 8px;\n\t--border-radius-input: 6px;\n\t--border-radius-clear-btn: 50%;\n\t--card-border-radius: 8px;\n\n\t/* Spacing */\n\t--padding-container-top: 24px;\n\t--padding-card: 24px;\n\t--padding-test-notice-vertical: 12px;\n\t--padding-test-notice-horizontal: 24px;\n\t--margin-bottom-card: 16px;\n\t--padding-form-input: 12px;\n\t--card-padding: 24px;\n\t--card-margin-bottom: 16px;\n\n\t/* Dimensions */\n\t--container-width: 448px;\n\t--submit-btn-height: 48px;\n\t--checkbox-size: 18px;\n\n\t/* Others */\n\t--box-shadow-card: 0px 4px 16px 0px var(--color-card-shadow);\n\t--opacity-placeholder: 0.5;\n}"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        208,
+        -256
+      ],
+      "id": "b6c0eb7f-0300-4896-8dd0-086904167326",
+      "name": "On form submission",
+      "webhookId": "23306438-625e-443a-8cb1-5f9999347da2",
+      "notesInFlow": true,
+      "notes": "My First from"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1MV_Dsspm6XrCzAkLvBHEYwFsjQMJU58YDXK1l00WMng",
+          "mode": "list",
+          "cachedResultName": "LEADS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MV_Dsspm6XrCzAkLvBHEYwFsjQMJU58YDXK1l00WMng/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MV_Dsspm6XrCzAkLvBHEYwFsjQMJU58YDXK1l00WMng/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "SERVICE": "={{ $json.Service }}",
+            "NAME": "={{ $json['Mian Muneeb'] }}",
+            "TIME": "={{ $json.submittedAt }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "NAME",
+              "displayName": "NAME",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SERVICE",
+              "displayName": "SERVICE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TIME",
+              "displayName": "TIME",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        -256
+      ],
+      "id": "ca11f2c3-7dd2-412d-9cbf-b354fbb93031",
+      "name": "Append row in sheet",
+      "executeOnce": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rU3irtTyLm9jpF9h",
+          "name": "Google Sheets account"
+        }
+      },
+      "notes": "MY FIRST SHEET"
+    },
+    {
+      "parameters": {
+        "sendTo": "mianmuneeb2085@gmail.com",
+        "subject": "form automation update",
+        "emailType": "text",
+        "message": "=hI my name is muneeb \n\n how i can help you?\n\nThere is the new lead on the form...\nNAME : {{ $json.NAME }}\nSERVICE : {{ $json.SERVICE }}\nTIME : {{ $json.TIME }}\n\nSOURCE : {{ $execution.id }}\n\nTHANKS,\nYOUR AOWSOME WORKFLOW\n\n\n\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        528,
+        -256
+      ],
+      "id": "35a1c9a0-3049-425e-834b-50b9127f3145",
+      "name": "Send a message",
+      "webhookId": "2c73b18e-a66b-4a52-9cd6-ee90c1485e9f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "h1EydFn3unrX5AcS",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "0da73149-4a96-463e-8999-c1b79d4d2db4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "429e195663f27f98e3cbb50d52dd92614a2af5614b436b6d59772211c3bcc951"
+  },
+  "id": "qeCVHl2CgWAYjkBvM4PAU",
+  "tags": [
+    {
+      "updatedAt": "2026-02-02T16:04:26.975Z",
+      "createdAt": "2026-02-02T16:04:26.975Z",
+      "id": "rcEzxAftKWbD83fW",
+      "name": "form-automation"
+    }
+  ]
+}
