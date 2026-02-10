@@ -1,0 +1,327 @@
+{
+  "name": "AUTOMATION 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        16
+      ],
+      "id": "a5ea7947-2ef2-4e37-a3f7-83f19ec799a3",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1X-4gPBa3P70GbRm0_U88p4yYx98ClzzLFzH6_v0Viak",
+          "mode": "list",
+          "cachedResultName": "PORTFOLIO CUSTOMERS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1X-4gPBa3P70GbRm0_U88p4yYx98ClzzLFzH6_v0Viak/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1X-4gPBa3P70GbRm0_U88p4yYx98ClzzLFzH6_v0Viak/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        256,
+        -144
+      ],
+      "id": "aa9a63a4-4740-4249-b8a5-01c71bcedeef",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rU3irtTyLm9jpF9h",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1X-4gPBa3P70GbRm0_U88p4yYx98ClzzLFzH6_v0Viak",
+          "mode": "list",
+          "cachedResultName": "PORTFOLIO CUSTOMERS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1X-4gPBa3P70GbRm0_U88p4yYx98ClzzLFzH6_v0Viak/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1X-4gPBa3P70GbRm0_U88p4yYx98ClzzLFzH6_v0Viak/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('Get row(s) in sheet').item.json.ID }}",
+            "NUMBER": "={{ $('Get row(s) in sheet').item.json.NUMBER }}",
+            "NAME": "={{ $('Get row(s) in sheet').item.json.NAME }}",
+            "BUDGET": "={{ $('Get row(s) in sheet').item.json.BUDGET }}",
+            "GENDER": "={{ $json.GENDER }}",
+            "NATIONALITY": "={{ $json.NATIONALITY }}",
+            "AGE": "={{ $json.AGE }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NAME",
+              "displayName": "NAME",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "NUMBER",
+              "displayName": "NUMBER",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "BUDGET",
+              "displayName": "BUDGET",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GENDER",
+              "displayName": "GENDER",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "NATIONALITY",
+              "displayName": "NATIONALITY",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AGE",
+              "displayName": "AGE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        960,
+        0
+      ],
+      "id": "c2f217db-a171-432b-b08c-13553b56ff5f",
+      "name": "Append or update row in sheet",
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rU3irtTyLm9jpF9h",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "mianmuneeb3322@gmail.com",
+        "subject": "=",
+        "message": "={{ ($json.output?.[0]?.content || []).map(c => c.text || '').join(' ') }}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1520,
+        -16
+      ],
+      "id": "4021a504-d2f4-4ec9-8228-5b58b30c22c8",
+      "name": "Send a message",
+      "webhookId": "9cce43b1-19ba-4732-acae-8475ac5af8c8",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "aXbtZzlmiSDNyexp",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Automation 2\n\nportfolio of customer accroding to there quries",
+        "height": 224,
+        "width": 960,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        64,
+        -480
+      ],
+      "typeVersion": 1,
+      "id": "97f9314e-fd3c-4b10-ac90-42aef670ecc8",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=Hey are an email writer,your aim is to provide me with email which i then will be sending on my email ID .\n\nbelow this is the format :\n \n..........\n\nhey muneeb,  A new client {{ $json.NAME }} has signed up .Below are the some details:  Number :{{ $json.NUMBER }} Budget :{{ $json.BUDGET }}  Below is the expected gender,age and nationality,  Gender:{{ $json.GENDER }} age:{{ $json.AGE }} nationality:{{ $json.NATIONALITY }}  Do make sure to connect with him at {{ $json.NUMBER }}  Thanks your awesome workflow,\n\n\n\n\n..........\n\nplease make sure that the email iis a lot in depth with more explaination and suggestion for the sale.\n\n\nstrictly give me output as a json not missing any key ,below is the structure.\n\nAlso make sure body us html friendly as iu will be using this via api which supports html formatting and i should see the email more nicely and redeable\n\n\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1168,
+        0
+      ],
+      "id": "0edd7aae-a9c1-4bc8-b86a-9ecc23b2399f",
+      "name": "Message a model",
+      "executeOnce": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "QGg2NOROmYukFLLQ",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Message a model": [
+      {
+        "json": {
+          "output": [
+            {
+              "id": "msg_037354e1119fa619006989ef7deb048193840ca1ad58ee8781",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "```json\n{\n  \"to\": \"muneeb@example.com\",\n  \"subject\": \"New Client Onboarding: MUNEEEB - Action Required\",\n  \"body\": \"<p>Hey Muneeb,</p><p>I'm pleased to inform you that a new client, <strong>MUNEEEB</strong>, has recently signed up with us. This is a great opportunity to expand our client base and deliver exceptional service. Here are the key details for your reference:</p><ul><li><strong>Client Number:</strong> 2345</li><li><strong>Budget:</strong> $50,000</li><li><strong>Demographics:</strong></li><ul><li>Gender: Male</li><li>Age: 71</li><li>Nationality: Nigerian (NG)</li></ul></ul><p>Given this information, I recommend you prioritize reaching out to MUNEEEB at the earliest convenience using the contact number <strong>2345</strong>. Establishing a strong rapport early on will be valuable, especially considering the budget they are bringing, which is substantial and indicates serious intent.</p><p>Considering the client's age and nationality, tailoring our approach with a culturally sensitive and respectful communication style would enhance engagement. It might also be helpful to discuss offerings that are particularly relevant to a senior demographic in Nigeria, such as tailored financial products, services with ease of access, or solutions addressing specific local market needs.</p><p>Furthermore, gathering more insights during your initial interactions—such as specific goals, preferred communication channels, and decision-making timelines—can help us create a personalized roadmap that aligns perfectly with MUNEEEB's expectations and maximizes the potential for a successful sale.</p><p>Please keep me updated on the progress and let me know if you need any additional support or materials to assist with the client. Your dedication and excellent workflow have always been appreciated, and I am confident you will manage this new client excellently.</p><p>Thanks for your awesome workflow and commitment!</p><p>Best regards,<br>Your Name</p>\"\n}\n```"
+                }
+              ],
+              "role": "assistant"
+            }
+          ]
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "b23bc871-3237-4476-84bd-cf9dfd58bf79",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "429e195663f27f98e3cbb50d52dd92614a2af5614b436b6d59772211c3bcc951"
+  },
+  "id": "s4fkyzop_7GouMJPqzdl0",
+  "tags": []
+}
